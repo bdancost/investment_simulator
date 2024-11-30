@@ -3,12 +3,6 @@
 // ❖ A função deve retornar o saldo final após o período especificado, com duas casas decimais.
 // Função: simularInvestimento
 
-const valorInicial = 1000; // Valor inicial investido
-const taxaMensal = 1.5; // Taxa mensal de rendimento em %
-const meses = 12; // Duração do investimento
-const metaInvestimento = 1500; // Meta para o saldo final de investimento
-const metaOrcamento = 2000; // Meta de orçamento mensal
-
 function simularInvestimento(valorInicial, taxaMensal, meses) {
   let saldoFinal = valorInicial;
 
@@ -25,13 +19,6 @@ function simularInvestimento(valorInicial, taxaMensal, meses) {
 // ❖ Crie uma função que receba um objeto representando as despesas mensais em diferentes categorias.
 // ❖ A função deve calcular e retornar o total de despesas.
 // Função: gerenciarDespesas
-
-const despesas = {
-  alimentacao: 500,
-  transporte: 150,
-  aluguel: 1200,
-  lazer: 200,
-};
 
 function gerenciarDespesas(despesas) {
   let totalDespesas = 0;
@@ -101,6 +88,60 @@ function gerarRelatorio(
   console.log(`Mês: ${mesAtual}`);
   console.log(`Saldo final de investimento: R$ ${saldoInvestimento}`);
   console.log(`Total de despesas: R$ ${totalDespesas}`);
+
+  // Orçamento
+  const economia = metaOrcamento - totalDespesas;
+  if (economia > 0) {
+    console.log(`Parabéns! Sua economia foi de R$ ${economia}`);
+  } else {
+    console.log(`Você excedeu o orçamento em R$ ${Math.abs(economia)}`);
+  }
+
+  // Investimento
+  if (saldoInvestimento >= metaInvestimento) {
+    console.log("Meta de investimento atingida!");
+  } else {
+    console.log("Você não atingiu a meta de investimento");
+  }
+
+  // Resumo das despesas
+  console.log("=== Resumo das Despesas ===");
+  for (const categoria in despesas) {
+    console.log(
+      `${categoria.charAt(0).toUpperCase() + categoria.slice(1)}: R$ ${
+        despesas[categoria]
+      }`
+    );
+  }
 }
 
-console.log(gerarRelatorio(valorInicial, taxaMensal, meses, despesas));
+// Requisito 5: Estrutura de Dados para Despesas
+// ❖ Crie um objeto para armazenar as despesas mensais, utilizando categorias como alinhamento, transporte, aluguel e lazer.
+// ❖ O objeto deve permitir fácil acesso e modificação das despesas.
+
+const despesas = {
+  condominio: 800,
+  escola: 500,
+  academia: 150,
+  agua: 60,
+  luz: 120,
+  lazer: 200,
+};
+
+//Requisito 6: Entrada e Configuraçoes do Investimento
+
+const valorInicial = 3000; // Valor inicial investido
+const taxaMensal = 1.3; // Taxa mensal de rendimento em %
+const meses = 12; // Duração do investimento
+const metaInvestimento = 2000; // Meta para o saldo final de investimento
+const metaOrcamento = 1500; // Meta de orçamento mensal
+
+//Requisito 7: Execução do Relatório
+gerarRelatorio(
+  valorInicial,
+  taxaMensal,
+  meses,
+  despesas,
+  metaInvestimento,
+  metaOrcamento
+);
